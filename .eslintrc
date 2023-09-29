@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": false,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "plugin:jest/all",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["jest", "@typescript-eslint"],
+  "rules": {
+    "max-classes-per-file": "off",
+    "no-underscore-dangle": "off",
+    "no-console": "error",
+    "no-shadow": "error",
+    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"]
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.ts"],
+      "excludedFiles": ["babel.config.js"]
+    }
+  ]
+}
