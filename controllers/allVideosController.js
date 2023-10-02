@@ -1,1 +1,0 @@
-const allVid = (req, res) => {};

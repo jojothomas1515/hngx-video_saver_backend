@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { Video } = require('../models/videos');
+const { videoToMp3 } = require('../service/convertVideo');
 
 // TODO: fix this
 let vidChunk = [];
@@ -24,9 +25,8 @@ const uploadVideo = (req, res) => {
   const { id } = req.params;
   req.on('data', (data) => {
     fs.appendFileSync(`./uploads/${id}.webm`, data);
-    console.log('recieved chunk');
-    // vidChunk.push(data);
   });
+  return res.status(201).json({ status: 'chunk appended' });
 };
 
 const endUpload = (req, res) => {
@@ -40,18 +40,17 @@ const endUpload = (req, res) => {
   console.log('saved');
   const vid = new Video({ name: `${id}.webm`, transcript: null, url: `/static/${id}.webm` });
   vid.save();
+  videoToMp3(`${id}.webm`);
   return res.json({ message: 'saved', data: { vid } });
 };
 
 const startRecord = (req, res) => {
-  const name = String(Math.floor(Math.random() * 9999999999999999));
-  console.log(name);
-  res.status(200).json({ status: 'success', vID: name });
+  const id = String(Math.floor(Math.random() * 9999999999999999));
+  res.status(200).json({ status: 'success', vID: id });
 };
 
 const getAllVideos = async (req, res) => {
   const allVid = await Video.find();
-
   return res.json(allVid);
 };
 
@@ -59,7 +58,6 @@ const getVid = async (req, res) => {
   const { name } = req.params;
 
   const vid = await Video.findOne({ name: name });
-
   res.json(vid);
 };
 

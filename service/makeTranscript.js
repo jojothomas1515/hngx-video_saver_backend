@@ -5,19 +5,24 @@ const fs = require('fs');
 const { Video } = require('../models/videos');
 
 const makeTrancript = async (vidName, audioPath) => {
-  const audioSource = {
-    stream: fs.createReadStream(audioPath),
-    mimetype: MIMETYPE_OF_FILE,
-  };
-
-  const response = await deepgram.transcription.preRecorded(audioSource, {
-    punctuate: true,
-    // other options are available
-  });
-  const vid = await Video.findOne({ name: vidName });
-  if (vid) {
-    vid.set({ transcript: response.results[0] });
-    await vid.save();
+  try {
+    const audioSource = {
+      stream: fs.createReadStream(audioPath),
+      mimetype: 'audio/mp3',
+    };
+    const response = await deepgram.transcription.preRecorded(audioSource, {
+      punctuate: true,
+      // other options are available
+    });
+    console.log(response.results.channels[0].alternatives[0].transcript);
+    const vid = await Video.findOne({ name: vidName });
+    if (vid) {
+      vid.set({ transcript: String(response.results.channels[0].alternatives[0].transcript) });
+      console.log('transcript done');
+      await vid.save();
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
