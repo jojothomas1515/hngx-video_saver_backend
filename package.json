@@ -1,35 +1,31 @@
 {
   "name": "hngx-video_saver_backend",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node --preset @babel/preset-env",
-    "tsc": "tsc",
-    "lint": "eslint . --ext .ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -x node main.js"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.0",
-    "@babel/node": "^7.22.19",
-    "@babel/preset-env": "^7.22.20",
-    "@babel/preset-typescript": "^7.23.0",
-    "@babel/register": "^7.22.15",
-    "@types/express": "^4.17.18",
-    "@types/node": "^20.7.1",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "eslint": "^8.50.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jest": "^27.4.0",
-    "jest": "^29.7.0",
-    "nodemon": "^3.0.1",
-    "prettier": "^3.0.3",
-    "typescript": "^4.9.3"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jojothomas1515/hngx-video_saver_backend.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jojothomas1515/hngx-video_saver_backend/issues"
+  },
+  "homepage": "https://github.com/jojothomas1515/hngx-video_saver_backend#readme",
   "dependencies": {
+    "@deepgram/sdk": "^2.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "image-thumbnail": "^1.0.15"
+    "express-fileupload": "^1.4.1",
+    "ffmpeg": "^0.0.4",
+    "mongoose": "^7.5.3",
+    "multer": "^1.4.5-lts.1"
   }
 }
