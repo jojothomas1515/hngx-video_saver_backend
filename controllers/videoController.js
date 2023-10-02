@@ -55,7 +55,9 @@ const getAllVideos = async (req, res) => {
 };
 
 const getVid = async (req, res) => {
-  const { name } = req.params;
+  let { name } = req.params;
+
+  if (!name.endsWith('.webm')) name = name + '.webm';
 
   const vid = await Video.findOne({ name: name });
   res.json(vid);

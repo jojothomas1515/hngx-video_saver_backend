@@ -1,11 +1,17 @@
 const fs = require('fs');
 
-const fileName = '/home/jojo/hngx-video_saver_backend/lala.webm';
 const streamVideo = async (req, res) => {
+  let { name } = req.params;
+
+  if (!name.endsWith('.webm')) name = name + '.webm';
+
+  const vid = await Video.findOne({ name: name });
   const range = req.headers.range;
+  if (!vid) return res.status(404).json({ status: 'not found' });
   if (!range) {
     return res.send('Range header needed');
   }
+  const fileName = vid.name;
   console.log(range);
   const size = fs.statSync(fileName).size;
   console.log(size);
