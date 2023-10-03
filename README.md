@@ -51,7 +51,7 @@ _POST_ http://localhost:5000/api/end/:id - save the video to and add the info to
   }
   ```
 
-_GET_ http://localhost:5000/static/:vidname - to get the video
+_GET_ http://localhost:5000/video/:vidname - to get the video
 
 - Response
   ```json
@@ -80,3 +80,6 @@ _GET_ http://localhost:5000/api/all -
           ]
           ```
   ````
+
+_GET_ http://localhost:5000/static/:vidname - to get the video
+
